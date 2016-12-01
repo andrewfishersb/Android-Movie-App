@@ -16,7 +16,8 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class MovieActivity extends AppCompatActivity {
-    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    @Bind(R.id.recyclerView)
+    RecyclerView mRecyclerView;
     private MovieListAdapter mAdapter;
 
     ArrayList<Movie> mMovies = new ArrayList<>();
@@ -26,42 +27,35 @@ public class MovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
         ButterKnife.bind(this);
-        getMovies("car");
+        getMovies("Harry");
     }
+
     //, String date, String rating
     private void getMovies(String title) {
         final MovieService movieService = new MovieService();
 
         //date, rating,
-        movieService.findMovies(title,  new Callback() {
+        movieService.findMovies(title, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
             }
 
             @Override
-            public void onResponse(Call call, Response response)  {
-                    mMovies = movieService.processResults(response);
-                    MovieActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mAdapter = new MovieListAdapter(getApplicationContext(),mMovies);
-                            mRecyclerView.setAdapter(mAdapter);
-                            RecyclerView.LayoutManager layoutManager= new LinearLayoutManager(MovieActivity.this);
-                            mRecyclerView.setLayoutManager(layoutManager);
-                            mRecyclerView.setHasFixedSize(true);
-//                            String[] moviesArray = new String[mMovies.size()];
-//                            for(int i =0;i<moviesArray.length;i++){
-//                                moviesArray[i] = mMovies.get(i).getTitle();
-//                                moviesArray[i] = mMovies.get(i).getPoster();
-//                                moviesArray[i] = mMovies.get(i).getSynopsis();
-                            }
-                        });
+            public void onResponse(Call call, Response response) {
+                mMovies = movieService.processResults(response);
+                MovieActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter = new MovieListAdapter(getApplicationContext(), mMovies);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MovieActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
                     }
-            });
+                });
+            }
+        });
 
     }
-
-
-
 }

@@ -5,7 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -18,7 +21,8 @@ import butterknife.ButterKnife;
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>{
     private ArrayList<Movie> mMovies = new ArrayList<>();
     private Context mContext;
-
+    private static final int MAX_WIDTH = 400;
+    private static final int MAX_HEIGHT = 300;
 
 
     public MovieListAdapter(Context context, ArrayList<Movie> movies){
@@ -27,7 +31,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     }
 
 
-    //didnt get here
+
     @Override
     public MovieListAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item, parent, false);
@@ -36,7 +40,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         return viewHolder;
     }
 
-        //didnt get here
+
     @Override
     public void onBindViewHolder(MovieListAdapter.MovieViewHolder holder, int position){
         holder.bindMovie(mMovies.get(position));
@@ -49,13 +53,13 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     public class MovieViewHolder extends RecyclerView.ViewHolder{
 
-       // @Bind(R.id.movieImageView) ImageView mMoviePosterView;
+        @Bind(R.id.movieImageView) ImageView mMoviePosterView;
         @Bind(R.id.movieNameTextView) TextView mMovieTitle;
         @Bind(R.id.movieSynopsisTextView) TextView mMovieSynopsis;
 
         private Context mContext;
 
-        //fails
+
         public MovieViewHolder(View itemView){
             super(itemView);
             ButterKnife.bind(this,itemView);
@@ -63,11 +67,12 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         }
 
-        //fails
+
         public void bindMovie(Movie movie){
             mMovieTitle.setText(movie.getTitle());
             mMovieSynopsis.setText(movie.getSynopsis());
-            //mMoviePosterView    link: http://image.tmdb.org/t/p/w500/jpeg key
+            Picasso.with(mContext).load(movie.getPoster()).resize(MAX_WIDTH, MAX_HEIGHT)
+                    .centerCrop().into(mMoviePosterView);
         }
     }
 }

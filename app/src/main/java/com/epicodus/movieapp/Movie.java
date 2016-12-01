@@ -22,7 +22,8 @@ public class Movie {
     }
 
     public String getPoster() {
-        return mPoster;
+        String url = "http://image.tmdb.org/t/p/w500" +mPoster;
+        return url;
     }
 
     public String getSynopsis() {
