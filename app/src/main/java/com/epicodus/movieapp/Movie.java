@@ -1,33 +1,35 @@
 package com.epicodus.movieapp;
 
+import android.util.Log;
+
 /**
  * Created by Guest on 12/1/16.
  */
 public class Movie {
-    String title;
-    String poster;
-    String synopsis;
-    String director;
+    String mTitle;
+    String mPoster;
+    String mSynopsis;
+    String mDirector;
     //maybe get id later and create a new query
     public Movie(String title, String poster, String synopsis){
-        this.title = title;
-        this.poster = poster;
-        this.synopsis = synopsis;
+        this.mTitle = title;
+        this.mPoster = poster;
+        this.mSynopsis = synopsis;
     }
 
     public String getTitle() {
-        return title;
+        return mTitle;
     }
 
     public String getPoster() {
-        return poster;
+        return mPoster;
     }
 
     public String getSynopsis() {
-        return synopsis;
+        return mSynopsis;
     }
 
     public String getDirector() {
-        return director;
+        return mDirector;
     }
 }

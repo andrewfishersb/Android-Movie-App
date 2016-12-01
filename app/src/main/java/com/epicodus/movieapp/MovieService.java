@@ -1,5 +1,7 @@
 package com.epicodus.movieapp;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,6 +65,8 @@ public class MovieService {
             e.printStackTrace();
 
         }
+
+
         return movies;
     }
 }
