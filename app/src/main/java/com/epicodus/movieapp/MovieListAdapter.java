@@ -2,11 +2,9 @@ package com.epicodus.movieapp;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -32,7 +30,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     //didnt get here
     @Override
     public MovieListAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item, parent, false);
         MovieViewHolder viewHolder = new MovieViewHolder(view);
 
         return viewHolder;
