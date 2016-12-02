@@ -1,5 +1,6 @@
 package com.epicodus.movieapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,7 +28,9 @@ public class MovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
         ButterKnife.bind(this);
-        getMovies("Harry");
+        Intent intent =getIntent();
+        String searchMovie = intent.getStringExtra("searchTitle");
+        getMovies(searchMovie);
     }
 
     //, String date, String rating
